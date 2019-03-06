@@ -8,15 +8,16 @@ public class ControlMCUV : MonoBehaviour
     Vector3 aceleracion = new Vector3(1, 1);
     Vector3 angulo = Vector3.zero;
     private float _radio;
-    public Vector3 _centro;
+    private Vector3 _centro;
 
+    
     // Start is called before the first frame update
     void Start()
     {
         velocidadFinal = new Vector3(200, 200, 0);
         //Coordenadas del hook
-        //establecerCentro(new Vector3(-49, -10));    
-        establecerCentro();
+        establecerCentro(new Vector3(-23, -1));    
+        //establecerCentro();
     }
 
     // Update is called once per frame
@@ -39,10 +40,10 @@ public class ControlMCUV : MonoBehaviour
 
     }
 
-    void establecerCentro(/*Vector3 nuevoCentro*/)
+    void establecerCentro(Vector3 nuevoCentro)
     {
-        //_centro = nuevoCentro;
-        _radio = (float)calcularDistancia(/*nuevoCentro*/_centro, gameObject.transform.position);
+        _centro = nuevoCentro;
+        _radio = 30;//(float)calcularDistancia(/*nuevoCentro*/_centro, gameObject.transform.position);
     }
 
     double calcularDistancia(Vector3 punto1, Vector3 punto2)

@@ -4,27 +4,36 @@ using UnityEngine;
 
 public class Disparar : MonoBehaviour
 {
+    public float velocidadDisparo;
     public GameObject FlechaPrefab;
     GameObject _flecha;
-    Vector3 mousePos;
-    float angle;
     ControlPruebaFlecha controlFlecha;
+    Vector3 mousePos;
+    
     Global scrGlobales;
+    double _alto, _ancho, _angulo;
+
+
+    void Awake()
+    {
+        controlFlecha = gameObject.GetComponent<ControlPruebaFlecha>();
+
+    }
 
     void Start()
     {
         scrGlobales = GameObject.Find("ScriptsGlobales").GetComponent<Global>();
-        //controlFlecha = GameObject.FindGameObjectWithTag("Flecha").GetComponent<ControlPruebaFlecha>();
+       
     }
 
     // Update is called once per frame
     void Update()
     {
-        mousePos = Input.mousePosition;
-        mousePos.z = 10f;
-        mousePos = Camera.main.ScreenToWorldPoint(mousePos);
 
-        if (mousePos.x <= 4.45f)
+        mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        Debug.Log(mousePos.x +" "+ mousePos.y);
+
+      /*  if (mousePos.x <= 4.45f)
         {
             mousePos.x = 4.45f;
         }
@@ -36,18 +45,22 @@ public class Disparar : MonoBehaviour
         {
             mousePos.y = 4.45f;
         }
+        */
+        _alto = mousePos.y - transform.position.y;
+        _ancho = mousePos.x - transform.position.x;
+        _angulo = Mathf.Atan((float)_alto / (float)_ancho);
+        
+        
 
-        angle = Mathf.Atan2(mousePos.y, mousePos.x) * Mathf.Rad2Deg;
-        transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+        gameObject.transform.rotation = Quaternion.AngleAxis((float)_angulo * Mathf.Rad2Deg, Vector3.forward);
+        
 
-      
-
-        if(scrGlobales.EstadoJugador == Global.eEstadoJugador.Preparando)
+        if (scrGlobales.EstadoJugador == Global.eEstadoJugador.Preparando)
         {
             _flecha = Instantiate(FlechaPrefab);
             _flecha.transform.SetParent(transform);
             _flecha.transform.localPosition = new Vector3(0, 0, 0);
-            _flecha.transform.localEulerAngles = new Vector3(0, 0, transform.localEulerAngles.z - 90f); 
+            _flecha.transform.localEulerAngles = new Vector3(0, 0, -45f); 
             scrGlobales.EstadoJugador = Global.eEstadoJugador.Esperando;
 
         }
@@ -57,16 +70,12 @@ public class Disparar : MonoBehaviour
         {
 
             _flecha.transform.SetParent(null);
-           
+            _flecha.GetComponent<ControlPruebaFlecha>().Velocidad = new Vector3(velocidadDisparo * Mathf.Cos((float)_angulo), velocidadDisparo * Mathf.Sin((float)_angulo));
 
-            if (mousePos.x < 0)
-            {
-                mousePos.x = mousePos.x * -1f;
-            }
-
-            _flecha.GetComponent<ControlPruebaFlecha>().posInicial = mousePos;
-            _flecha.GetComponent<ControlPruebaFlecha>().angle = angle;
-            // controlFlecha.setPosInicial(mousePos, angle);
+            
+            // _flecha.GetComponent<ControlMRUV>().posInicial = mousePos;
+            //_flecha.GetComponent<ControlMRUV>().setPosInicial(angle);
+            
             scrGlobales.EstadoJugador = Global.eEstadoJugador.Disparo;
 
 

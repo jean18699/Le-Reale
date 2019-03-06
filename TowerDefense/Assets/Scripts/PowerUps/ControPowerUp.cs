@@ -33,7 +33,7 @@ public class ControPowerUp : MonoBehaviour
         if(other.transform.gameObject.name == "DeadZoneSuelo")
         {
             _pwrUp = Instantiate(PowerUps[0]);
-
+           
            /* if(_pwrUp.transform.tag == "Escudo")
             {
                 _pwrUp.transform.position = new Vector3(-37.70712f, -1.992721f, 0);

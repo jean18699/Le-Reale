@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3469140179273604199}
   - component: {fileID: 5547755226893237240}
+  - component: {fileID: 866178594}
   m_Layer: 0
   m_Name: SistemaDefensa
   m_TagString: Untagged
@@ -45,6 +46,20 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &866178594
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3469140179273604197}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d7310772b89abd4589635f1cf572f85, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _radio: 5
+  _centro: {x: -30, y: -20, z: 0}
 --- !u!1 &3469140179658859721
 GameObject:
   m_ObjectHideFlags: 0
@@ -55,7 +70,6 @@ GameObject:
   m_Component:
   - component: {fileID: 3469140179658859722}
   - component: {fileID: 3469140179658859723}
-  - component: {fileID: 3469140179658859720}
   m_Layer: 0
   m_Name: ParticulaEscudo
   m_TagString: Untagged
@@ -125,16 +139,3 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &3469140179658859720
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3469140179658859721}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1d7310772b89abd4589635f1cf572f85, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _centro: {x: -60, y: -20, z: 0}
